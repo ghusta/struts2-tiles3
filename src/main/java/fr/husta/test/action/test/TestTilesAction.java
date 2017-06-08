@@ -7,9 +7,9 @@ import org.apache.struts2.convention.annotation.Result;
 /**
  * URL = /test/test-tiles
  */
-@Result(name = "success", type = "tiles")
+//@Result(name = "success", type = "tiles")
 //@TilesDefinition(extend = "")
-@CustomTestTilesDefinition
+//@CustomTestTilesDefinition
 public class TestTilesAction
         extends ActionSupport
 {

@@ -11,6 +11,8 @@
 <p>
     <a href="<s:url action="index"/>">Accueil</a>
     <br/>
+    <a href="<s:url action="test/test-tiles"/>">Test : test-tiles</a>
+    <br/>
 
 </p>
 
