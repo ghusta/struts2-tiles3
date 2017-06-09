@@ -14,12 +14,4 @@
     <!-- Juste les servlets... -->
     <constant name="struts.action.excludePattern" value="/spring-ctx"/>
 
-    <package name="basicstruts2" extends="struts-default">
-
-        <action name="index">
-            <result>/index.jsp</result>
-        </action>
-
-    </package>
-
 </struts>
