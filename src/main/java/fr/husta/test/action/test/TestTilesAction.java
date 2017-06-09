@@ -1,15 +1,18 @@
 package fr.husta.test.action.test;
 
 import com.opensymphony.xwork2.ActionSupport;
-import fr.husta.test.tiles.definition.CustomTestTilesDefinition;
 import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.tiles.annotation.TilesDefinition;
+import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 
 /**
  * URL = /test/test-tiles
  */
-//@Result(name = "success", type = "tiles")
-//@TilesDefinition(extend = "")
-//@CustomTestTilesDefinition
+@Result(name = "success", type = "tiles")
+@TilesDefinition(extend = "layout",
+        putAttributes = {
+            @TilesPutAttribute( name = "title", value = "Test")
+})
 public class TestTilesAction
         extends ActionSupport
 {
@@ -17,7 +20,6 @@ public class TestTilesAction
     @Override
     public String execute() throws Exception
     {
-
         return SUCCESS;
     }
 
