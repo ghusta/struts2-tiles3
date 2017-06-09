@@ -9,6 +9,8 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
+    <name>Quick Start : Struts 2  + Tiles 3</name>
+
     <prerequisites>
         <maven>3.3</maven>
     </prerequisites>
