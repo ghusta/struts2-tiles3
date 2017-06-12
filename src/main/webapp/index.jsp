@@ -22,6 +22,7 @@
     <h2>Tests basiques</h2>
     <ul class="list-group">
         <li class="list-group-item"><a href="<s:url action="index"/>">Accueil</a>&nbsp;<i>(Action Struts 2)</i></li>
+        <li class="list-group-item"><a href="<s:url action="notiles/index"/>">No Tiles !</a>&nbsp;<i>(Action Struts 2)</i></li>
         <li class="list-group-item list-group-item-danger"><a href="<c:url value="not-defined.jsp" />">Page 404 ?</a></li>
     </ul>
     </p>
@@ -29,6 +30,7 @@
     <h2>Tests Tiles 3</h2>
     <ul class="list-group">
         <li class="list-group-item"><a href="<s:url action="test/test-tiles"/>">Test : test-tiles</a></li>
+        <li class="list-group-item"><a href="<s:url action="foo/bar" />">Test : foo/bar</a> - Conf (wildcard)</li>
     </ul>
     </p>
     <p>
