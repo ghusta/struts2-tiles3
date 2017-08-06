@@ -1,19 +1,15 @@
-package fr.husta.test.action.test;
+package fr.husta.test.action.foo;
 
 import com.opensymphony.xwork2.ActionSupport;
 import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
-import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 
 /**
- * URL = /test/test-tiles
+ * URL : /foo/bar
  */
 @Result(name = "success", type = "tiles")
-@TilesDefinition(extend = "layout",
-        putAttributes = {
-            @TilesPutAttribute( name = "title", value = "Test")
-})
-public class TestTilesAction
+@TilesDefinition(name = "foo/bar")
+public class BarAction
         extends ActionSupport
 {
 
