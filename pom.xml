@@ -22,7 +22,7 @@
         <struts2.version>2.5.16</struts2.version>
 
         <slf4j.version>1.7.25</slf4j.version>
-        <log4j2.version>2.10.0</log4j2.version>
+        <log4j2.version>2.11.0</log4j2.version>
         <logback.version>1.2.3</logback.version>
     </properties>
 
@@ -96,6 +96,10 @@
             <groupId>org.apache.struts</groupId>
             <artifactId>struts2-tiles-plugin</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.apache.struts</groupId>
+            <artifactId>struts2-config-browser-plugin</artifactId>
+        </dependency>
         <!--<dependency>-->
             <!--<groupId>org.apache.struts</groupId>-->
             <!--<artifactId>struts2-bean-validation-plugin</artifactId>-->
@@ -104,6 +108,24 @@
             <groupId>org.apache.struts</groupId>
             <artifactId>struts2-junit-plugin</artifactId>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>1.9.3</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>commons-logging</groupId>
+                    <artifactId>commons-logging</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- SERVLETS -->
@@ -126,6 +148,7 @@
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
             <version>1.2</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -155,7 +178,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.6.1</version>
+                <version>3.7.0</version>
                 <configuration>
                     <!-- http://maven.apache.org/plugins/maven-compiler-plugin/ -->
                     <source>${java.version}</source>
@@ -171,7 +194,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>3.2.0</version>
                 <configuration>
                     <failOnMissingWebXml>false</failOnMissingWebXml>
 
@@ -184,6 +207,21 @@
                         </manifestEntries>
                     </archive>
                 </configuration>
+            </plugin>
+
+            <!-- Security Checks -->
+            <plugin>
+                <groupId>org.owasp</groupId>
+                <artifactId>dependency-check-maven</artifactId>
+                <version>3.1.2</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <!-- Phase : verify -->
+                            <goal>check</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
 
             <plugin>
