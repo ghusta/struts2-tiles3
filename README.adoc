@@ -1,0 +1,18 @@
+= struts2-tiles3
+
+Testing integration of :
+
+* Struts 2.5
+    ** struts-convention-plugin
+    ** struts-tiles-plugin
+* Tiles 3
+
+== Links
+
+* https://struts.apache.org/docs/tiles-plugin.html[https://struts.apache.org/docs/tiles-plugin.html]
+* https://spring.io/blog/2012/10/30/spring-mvc-from-jsp-and-tiles-to-thymeleaf/[https://spring.io/blog/2012/10/30/spring-mvc-from-jsp-and-tiles-to-thymeleaf/]
+* https://tiles.apache.org/framework/tutorial/advanced/nesting-extending.html[https://tiles.apache.org/framework/tutorial/advanced/nesting-extending.html]
+
+== Tiles features
+
+* https://tiles.apache.org/framework/tutorial/advanced/wildcard.html[Wildcard support] (since 2.2)
