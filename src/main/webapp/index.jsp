@@ -5,7 +5,7 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
-    <title>Tests</title>
+    <title>Testing Struts 2 + Tiles</title>
 
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
           integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
@@ -29,8 +29,17 @@
     <br/>
     <h2>Tests Tiles 3</h2>
     <ul class="list-group">
-        <li class="list-group-item"><a href="<s:url action="test/test-tiles"/>">Test : test-tiles</a></li>
+        <li class="list-group-item"><a href="<s:url namespace="/tiles" action="test-tiles"/>">Test : test-tiles</a></li>
+        <li class="list-group-item"><a href="<s:url namespace="/tiles" action="test-tiles-annotation"/>">Test Tiles with annotations / without XML</a></li>
         <li class="list-group-item"><a href="<s:url action="foo/bar" />">Test : foo/bar</a> - Conf (wildcard)</li>
+    </ul>
+
+    <br/>
+    <h2>Debug</h2>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <a href="<s:url namespace="/config-browser" action="index" />"><i class="fa fa-cogs fa-lg" aria-hidden="true"></i> Debug : Config Browser</a>
+        </li>
     </ul>
 
     <p>

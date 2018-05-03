@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" trimDirectiveWhitespaces="true" %>
-<%@ taglib uri="http://tiles.apache.org/tags-tiles" prefix="tiles" %>
+<%@ taglib prefix="tiles" uri="http://tiles.apache.org/tags-tiles" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
 <tiles:importAttribute name="title" scope="request"/>
 <html>
@@ -18,12 +18,15 @@
 <body>
 <div id="main-container" class="container">
     <div id="header">
+        <h1><tiles:getAsString name="title"/></h1>
         <tiles:insertAttribute name="header"/>
     </div>
-    <div id="content">
-        <tiles:insertAttribute name="body"/>
+    <div id="content" class="card">
+        <div class="card-body">
+            <tiles:insertAttribute name="body"/>
+        </div>
     </div>
-    <div class="alert alert-info" role="alert">
+    <div class="alert alert-info" role="alert" style="margin-top: 50px;">
         Notice that this is a layout made in JSP
     </div>
 </div>

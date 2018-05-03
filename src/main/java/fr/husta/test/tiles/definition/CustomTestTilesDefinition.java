@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 
 @Retention(value = RetentionPolicy.RUNTIME)
 @Target(value = { ElementType.TYPE })
-@TilesDefinition(extend = "test")
+@TilesDefinition(extend = "tiles")
 public @interface CustomTestTilesDefinition
 {
 }

@@ -11,6 +11,6 @@
  * </p>
  */
 @ParentPackage("tiles-default")
-package fr.husta.test.action.test;
+package fr.husta.test.action.tiles;
 
 import org.apache.struts2.convention.annotation.ParentPackage;

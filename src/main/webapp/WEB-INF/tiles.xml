@@ -4,6 +4,7 @@
 
 <tiles-definitions>
 
+    <!-- BASE TEMPLATE -->
     <definition name="layout" template="/WEB-INF/layout/layout.jsp">
         <put-attribute name="title" value="Exemple" />
         <put-attribute name="header" value=".header"/>
