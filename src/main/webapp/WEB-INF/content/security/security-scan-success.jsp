@@ -38,6 +38,9 @@
                         <li class="list-group-item">${ns == "" ? "_" : ns}</li>
                     </s:iterator>
                 </ul>
+                <div class="card-footer">
+                    <small class="text-muted">Total namespaces : <s:property value="namespaces.size" /></small>
+                </div>
             </div>
         </div>
     </div>
