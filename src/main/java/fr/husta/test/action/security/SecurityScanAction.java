@@ -1,6 +1,7 @@
 package fr.husta.test.action.security;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.config.Configuration;
 import com.opensymphony.xwork2.config.entities.ActionConfig;
 import com.opensymphony.xwork2.inject.Inject;
 import fr.husta.test.util.AnnotationSecureUtils;
@@ -14,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import javax.annotation.security.RolesAllowed;
 import java.lang.reflect.Method;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -27,6 +29,8 @@ public class SecurityScanAction extends ActionSupport {
 
     protected ConfigurationHelper configHelper;
 
+    private Configuration configuration;
+
     private Set<String> actionNames;
     private Set<String> actionNamesNsTiles;
     private Set<String> actionNamesNsFoo;
@@ -37,6 +41,11 @@ public class SecurityScanAction extends ActionSupport {
     @Inject
     public void setConfigurationHelper(ConfigurationHelper cfg) {
         this.configHelper = cfg;
+    }
+
+    @Inject
+    public void setConfiguration(Configuration config) {
+        this.configuration = config;
     }
 
     public Set<String> getActionNames() {
@@ -82,7 +91,7 @@ public class SecurityScanAction extends ActionSupport {
         logger.debug("@RolesAllowed sur class : {}", isClassSecured(actionConfigTest.getClassName()));
 
         logger.debug("@RolesAllowed sur method : {}", isMethSecured(actionConfigTest.getClassName(), actionConfigTest.getMethodName()));
-        logger.debug("Roles found : {}",
+        logger.debug("Roles found (on {}/{}) : {}", actionConfigTest.getClassName(), actionConfigTest.getMethodName(),
                 extractRoles(actionConfigTest.getClassName(), actionConfigTest.getMethodName()));
 
         return SUCCESS;
@@ -102,6 +111,14 @@ public class SecurityScanAction extends ActionSupport {
     private List<String> extractRoles(String className, String methodName) throws ClassNotFoundException {
         Method accessibleMethod = MethodUtils.getAccessibleMethod(Class.forName(className), methodName);
         return AnnotationSecureUtils.extractRolesAllowed(accessibleMethod);
+    }
+
+    /**
+     * @return
+     * @see ConfigurationHelper#getActionConfig(String, String)
+     */
+    private Map<String, Map<String, ActionConfig>> getActionConfigs() {
+        return configuration.getRuntimeConfiguration().getActionConfigs();
     }
 
 }
