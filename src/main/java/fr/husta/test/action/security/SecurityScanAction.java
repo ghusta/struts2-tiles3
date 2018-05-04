@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.annotation.security.RolesAllowed;
 import java.lang.reflect.Method;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -78,19 +79,29 @@ public class SecurityScanAction extends ActionSupport {
         logger.debug("actionConfigTest.className : {}", actionConfigTest.getClassName());
         logger.debug("actionConfigTest.methodName: {}", actionConfigTest.getMethodName());
 
-        RolesAllowed annotRolesAllowedTest1 = AnnotationSecureUtils.findAnnotationRolesAllowed(Class.forName(actionConfigTest.getClassName()));
-        logger.debug("@RolesAllowed sur class : {}", annotRolesAllowedTest1 != null);
+        logger.debug("@RolesAllowed sur class : {}", isClassSecured(actionConfigTest.getClassName()));
 
-        logger.debug("@RolesAllowed sur method : {}", isMethSecured(actionConfigTest, actionConfigTest.getMethodName()));
+        logger.debug("@RolesAllowed sur method : {}", isMethSecured(actionConfigTest.getClassName(), actionConfigTest.getMethodName()));
+        logger.debug("Roles found : {}",
+                extractRoles(actionConfigTest.getClassName(), actionConfigTest.getMethodName()));
 
         return SUCCESS;
     }
 
-    private boolean isMethSecured(ActionConfig actionConfigTest, String methodName) throws ClassNotFoundException {
-        Method accessibleMethod = MethodUtils.getAccessibleMethod(Class.forName(actionConfigTest.getClassName()), methodName);
+    private boolean isClassSecured(String className) throws ClassNotFoundException {
+        RolesAllowed annotRolesAllowedTest = AnnotationSecureUtils.findAnnotationRolesAllowed(Class.forName(className));
+        return annotRolesAllowedTest != null;
+    }
+
+    private boolean isMethSecured(String className, String methodName) throws ClassNotFoundException {
+        Method accessibleMethod = MethodUtils.getAccessibleMethod(Class.forName(className), methodName);
         RolesAllowed annotationRolesAllowed = AnnotationSecureUtils.findAnnotationRolesAllowed(accessibleMethod);
         return annotationRolesAllowed != null;
     }
 
+    private List<String> extractRoles(String className, String methodName) throws ClassNotFoundException {
+        Method accessibleMethod = MethodUtils.getAccessibleMethod(Class.forName(className), methodName);
+        return AnnotationSecureUtils.extractRolesAllowed(accessibleMethod);
+    }
 
 }

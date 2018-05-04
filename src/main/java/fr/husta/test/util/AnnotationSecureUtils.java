@@ -6,6 +6,8 @@ import org.springframework.core.annotation.AnnotationUtils;
 import javax.annotation.security.RolesAllowed;
 import java.lang.reflect.AnnotatedElement;
 import java.lang.reflect.Method;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class AnnotationSecureUtils {
@@ -24,5 +26,19 @@ public class AnnotationSecureUtils {
         return MethodUtils.getMethodsListWithAnnotation(cls, RolesAllowed.class);
     }
 
+    /**
+     * Extract roles list from {@link RolesAllowed @RolesAllowed}.
+     *
+     * @param annotatedElement
+     * @return
+     */
+    public static List<String> extractRolesAllowed(AnnotatedElement annotatedElement) {
+        RolesAllowed annotation = AnnotationUtils.findAnnotation(annotatedElement, RolesAllowed.class);
+        if (annotation != null) {
+            return Arrays.asList(annotation.value());
+        } else {
+            return Collections.emptyList();
+        }
+    }
 
 }
