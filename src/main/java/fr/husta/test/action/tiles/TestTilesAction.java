@@ -5,21 +5,22 @@ import org.apache.struts2.convention.annotation.Result;
 import org.apache.struts2.tiles.annotation.TilesDefinition;
 import org.apache.struts2.tiles.annotation.TilesPutAttribute;
 
+import javax.annotation.security.RolesAllowed;
+
 /**
  * URL = /tiles/test-tiles
  */
 @Result(name = "success", type = "tiles")
 @TilesDefinition(extend = "layout",
         putAttributes = {
-            @TilesPutAttribute( name = "title", value = "Test with Tiles")
-})
+                @TilesPutAttribute(name = "title", value = "Test with Tiles")
+        })
 public class TestTilesAction
-        extends ActionSupport
-{
+        extends ActionSupport {
 
     @Override
-    public String execute() throws Exception
-    {
+    @RolesAllowed({"ROLE_ADMIN"})
+    public String execute() throws Exception {
         return SUCCESS;
     }
 

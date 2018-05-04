@@ -21,6 +21,8 @@
 
         <struts2.version>2.5.18</struts2.version>
 
+        <spring-framework.version>5.0.5.RELEASE</spring-framework.version>
+
         <slf4j.version>1.7.25</slf4j.version>
         <log4j2.version>2.11.1</log4j2.version>
         <logback.version>1.2.3</logback.version>
@@ -34,6 +36,15 @@
                 <groupId>org.apache.struts</groupId>
                 <artifactId>struts2-bom</artifactId>
                 <version>${struts2.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- SPRING - BOM -->
+            <dependency>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-framework-bom</artifactId>
+                <version>${spring-framework.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -114,6 +125,12 @@
                     <artifactId>commons-logging</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+
+        <!-- Spring -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
         </dependency>
 
         <dependency>
