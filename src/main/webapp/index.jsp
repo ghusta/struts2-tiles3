@@ -38,12 +38,12 @@
     <h2>Debug</h2>
     <ul class="list-group">
         <li class="list-group-item">
-            <a href="<s:url namespace="/config-browser" action="index" />"><i class="fa fa-cogs fa-lg" aria-hidden="true"></i> Debug : Config Browser</a>
+            <a href="<c:url value="config-browser/" />"><i class="fa fa-cogs fa-lg" aria-hidden="true"></i> Debug : Config Browser</a>
         </li>
     </ul>
 
     <p>
-        Context-Path : <code><c:out value="${pageContext.request.contextPath}"/></code>
+        Context-Path : <code><c:out value="${pageContext.request.contextPath}" default="?"/></code>
     </p>
 </div>
 </body>

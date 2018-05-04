@@ -16,3 +16,9 @@ Testing integration of :
 == Tiles features
 
 * https://tiles.apache.org/framework/tutorial/advanced/wildcard.html[Wildcard support] (since 2.2)
+
+== Test
+
+    mvn jetty:run
+
+Then go to : http://localhost:8280/

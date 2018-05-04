@@ -229,6 +229,9 @@
                 <artifactId>jetty-maven-plugin</artifactId>
                 <version>9.4.9.v20180320</version>
                 <configuration>
+                    <httpConnector>
+                        <port>8280</port>
+                    </httpConnector>
                     <stopKey>CTRL-C</stopKey>
                     <stopPort>8088</stopPort>
                 </configuration>
