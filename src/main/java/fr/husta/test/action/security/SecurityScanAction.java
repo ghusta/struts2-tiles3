@@ -94,6 +94,8 @@ public class SecurityScanAction extends ActionSupport {
         logger.debug("Roles found (on {}/{}) : {}", actionConfigTest.getClassName(), actionConfigTest.getMethodName(),
                 extractRoles(actionConfigTest.getClassName(), actionConfigTest.getMethodName()));
 
+        scanAllActions();
+
         return SUCCESS;
     }
 
@@ -103,9 +105,22 @@ public class SecurityScanAction extends ActionSupport {
     }
 
     private boolean isMethSecured(String className, String methodName) throws ClassNotFoundException {
-        Method accessibleMethod = MethodUtils.getAccessibleMethod(Class.forName(className), methodName);
-        RolesAllowed annotationRolesAllowed = AnnotationSecureUtils.findAnnotationRolesAllowed(accessibleMethod);
+        if (className == null || methodName == null) {
+            return false;
+        }
+        RolesAllowed annotationRolesAllowed;
+        try {
+            Method accessibleMethod = MethodUtils.getAccessibleMethod(Class.forName(className), methodName);
+            annotationRolesAllowed = AnnotationSecureUtils.findAnnotationRolesAllowed(accessibleMethod);
+        } catch (Exception e) {
+            logger.error("Error on class '{}' / method '{}'", className, methodName);
+            throw e;
+        }
         return annotationRolesAllowed != null;
+    }
+
+    private List<String> extractRoles(String className) throws ClassNotFoundException {
+        return AnnotationSecureUtils.extractRolesAllowed(Class.forName(className));
     }
 
     private List<String> extractRoles(String className, String methodName) throws ClassNotFoundException {
@@ -119,6 +134,32 @@ public class SecurityScanAction extends ActionSupport {
      */
     private Map<String, Map<String, ActionConfig>> getActionConfigs() {
         return configuration.getRuntimeConfiguration().getActionConfigs();
+    }
+
+    private void scanAllActions() throws ClassNotFoundException {
+        logger.debug("scanAllActions()");
+        Map<String, Map<String, ActionConfig>> actionConfigs = getActionConfigs();
+
+        for (String ns : actionConfigs.keySet()) {
+            logger.info(" * Namespace : {}", ns);
+            Map<String, ActionConfig> actionConfigMap = actionConfigs.get(ns);
+            for (String actionName : actionConfigMap.keySet()) {
+                logger.info("\t * Action : {}", actionName);
+                ActionConfig actionConfig = actionConfigMap.get(actionName);
+                logger.info("\t >> className : {}", actionConfig.getClassName());
+                if (isClassSecured(actionConfig.getClassName())) {
+                    logger.info("\t >> @RolesAllowed found on this class <<");
+                    List<String> roles = extractRoles(actionConfig.getClassName());
+                    logger.info("\t\t >> Roles found on this class : {} <<", roles);
+                }
+                logger.info("\t >> methodName : {}", actionConfig.getMethodName());
+                if (isMethSecured(actionConfig.getClassName(), actionConfig.getMethodName())) {
+                    logger.info("\t\t >> @RolesAllowed found on this method <<");
+                    List<String> roles = extractRoles(actionConfig.getClassName(), actionConfig.getMethodName());
+                    logger.info("\t\t >> Roles found on this method : {} <<", roles);
+                }
+            }
+        }
     }
 
 }
