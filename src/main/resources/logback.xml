@@ -13,6 +13,8 @@
     <logger name="org.apache.struts2.views.freemarker" level="info" />
     <logger name="org.apache.struts2.interceptor.I18nInterceptor" level="info" />
 
+    <logger name="org.springframework" level="info" />
+
     <logger name="org.apache.commons.digester.Digester" level="info" />
 
     <root level="debug">

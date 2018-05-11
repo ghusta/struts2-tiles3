@@ -2,6 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" trimDirectiveWhitespaces="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
@@ -10,31 +11,37 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
           integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
 </head>
 <body>
 <div id="main-container" class="container">
-    <h1>Hello !</h1>
-
+    <h1>Hello ! <span class="badge badge-info"><sec:authentication property="principal.username" /></span></h1>
     <br/>
+
     <h2>Tests basiques</h2>
     <ul class="list-group">
         <li class="list-group-item"><a href="<s:url action="index"/>">Accueil</a>&nbsp;<i>(Action Struts 2)</i></li>
         <li class="list-group-item"><a href="<s:url action="notiles/index"/>">No Tiles !</a>&nbsp;<i>(Action Struts 2)</i></li>
         <li class="list-group-item list-group-item-danger"><a href="<c:url value="not-defined.jsp" />">Page 404 ?</a></li>
     </ul>
-
     <br/>
+
     <h2>Tests Tiles 3</h2>
     <ul class="list-group">
         <li class="list-group-item"><a href="<s:url namespace="/tiles" action="test-tiles"/>">Test : test-tiles</a></li>
         <li class="list-group-item"><a href="<s:url namespace="/tiles" action="test-tiles-annotation"/>">Test Tiles with annotations / without XML</a></li>
         <li class="list-group-item"><a href="<s:url action="foo/bar" />">Test : foo/bar</a> - Conf (wildcard)</li>
     </ul>
-
     <br/>
+
+    <h2>Tests Spring Security</h2>
+    <ul class="list-group">
+        <li class="list-group-item"><a href="<s:url namespace="/secured" action="secured"/>">Test #1</a></li>
+    </ul>
+    <br/>
+
     <h2>Debug</h2>
     <ul class="list-group">
         <li class="list-group-item">
