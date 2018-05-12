@@ -55,6 +55,20 @@
     <p>
         Context-Path : <code><c:out value="${pageContext.request.contextPath}" default="?"/></code>
     </p>
+    <p>
+        <h2>Accessible URLs :</h2>
+        <ul>
+<sec:authorize url="/admin/">
+    <li>URL <code>/admin/</code> OK</li>
+</sec:authorize>
+<sec:authorize url="/admin/superadmin/">
+    <li>URL <code>/admin/superadmin/</code> OK</li>
+</sec:authorize>
+<sec:authorize url="/secured/">
+    <li>URL <code>/secured/</code> OK</li>
+</sec:authorize>
+        </ul>
+    </p>
 </div>
 </body>
 </html>

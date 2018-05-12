@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
 import static fr.husta.test.security.WebSecurityConstants.Roles.ADMIN;
+import static fr.husta.test.security.WebSecurityConstants.Roles.SUPERADMIN;
 import static fr.husta.test.security.WebSecurityConstants.Roles.USER;
 
 @Configuration
@@ -30,6 +31,12 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .username("admin").password("admin*").roles(ADMIN)
                 .build();
         manager.createUser(userAdmin);
+
+        UserDetails god = User.withDefaultPasswordEncoder()
+                .username("god").password("jesus").roles(USER, ADMIN, SUPERADMIN)
+                .build();
+        manager.createUser(god);
+
         return manager;
     }
 
@@ -37,6 +44,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
+                // Note that the matchers are considered in order.
+                // Doc : https://docs.spring.io/spring-security/site/docs/current/reference/html5/index.html#jc-authorize-requests
+                .antMatchers("/admin/superadmin/**").hasRole(SUPERADMIN)
                 .antMatchers("/admin/**").hasRole(ADMIN)
                 .antMatchers("/secured/**").hasRole(USER)
                 .anyRequest().authenticated()
