@@ -1,0 +1,59 @@
+= Problèmes rencontrés
+
+== Struts 2
+
+=== Enregistrement des Actions Struts 2 en tant que beans Spring
+
+L'utilisation du plugin https://struts.apache.org/docs/spring-plugin.html[_struts2-spring-plugin_] permet l'intégration de Struts 2 et Spring.
+Les actions Struts sont ainsi enregistrées en tant que *beans Spring*.
+
+Cela va permettre par exemple de *sécuriser une méthode* d'une action Struts en utilisant l'annotation `@javax.annotation.security.RolesAllowed` par exemple (https://jcp.org/en/jsr/detail?id=250[JSR-250]).
+
+=== Problèmes rencontrés
+
+==== Impossible d'afficher les propriétés d'une Action Struts 2 dans une JSP en utilisant les annotations de sécurité sur une méthode
+
+.Problème :
+On désire sécuriser une méthode d'une action Struts 2, possédant des propriétés (ici une propriété _test_, avec getter et setter).
+
+Exemple :
+
+[source,java]
+----
+@RolesAllowed({"ROLE_TRUC"})
+@Override
+public String execute() throws Exception
+{
+    ...
+    return SUCCESS;
+}
+----
+
+Dans la JSP, on affiche les propriétés comme suit :
+[source,xml]
+----
+<%@ taglib prefix="s" uri="/struts-tags" %>
+...
+<div>
+    <label>Test : </label>
+    <s:property value="test"/>
+</div>
+----
+
+WARNING: Le problème est que la propriété n'est pas affichée. C'est comme si elle n'était pas présente dans la _ValueStack_ de Struts,
+transmise dans les attributs de la _ServletRequest_.
+
+.Solution :
+Activer le *mode proxy* sur l'annotation `@EnableGlobalMethodSecurity` :
+
+[source,java]
+----
+@EnableGlobalMethodSecurity(proxyTargetClass = true, jsr250Enabled = true, securedEnabled = true)
+----
+
+.Références utiles :
+- https://struts.apache.org/docs/jsp.html[JSP avec Struts]
+- https://struts.apache.org/docs/ognl.html[OGNL + Value Stack avec Struts]
+- https://docs.spring.io/spring/docs/current/spring-framework-reference/core.html#aop-proxying[Proxying mechanisms avec Spring]
+
+NOTE: Generally we would recommend applying method security at the service layer rather than on individual web controllers. (https://docs.spring.io/spring-security/site/docs/5.0.x/reference/html/appendix-faq.html#appendix-faq-method-security-in-web-context[Source])
