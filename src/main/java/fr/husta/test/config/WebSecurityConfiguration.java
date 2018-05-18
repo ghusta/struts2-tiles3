@@ -10,9 +10,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
-import static fr.husta.test.security.WebSecurityConstants.Roles.ADMIN;
-import static fr.husta.test.security.WebSecurityConstants.Roles.SUPERADMIN;
-import static fr.husta.test.security.WebSecurityConstants.Roles.USER;
+import static fr.husta.test.security.WebSecurityConstants.Roles.*;
 
 @Configuration
 @EnableWebSecurity
@@ -26,6 +24,11 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .username("user").password("password").roles(USER)
                 .build();
         manager.createUser(userDetails);
+
+        UserDetails superuserDetails = User.withDefaultPasswordEncoder()
+                .username("superuser").password("password").roles(SUPERUSER)
+                .build();
+        manager.createUser(superuserDetails);
 
         UserDetails userAdmin = User.withDefaultPasswordEncoder()
                 .username("admin").password("admin*").roles(ADMIN)
@@ -53,6 +56,11 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin().and()
                 .httpBasic()
+                .and()
+                .anonymous().disable()
+                .servletApi()
+                .and()
+                .csrf()
                 .and()
                 .headers();
     }

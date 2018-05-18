@@ -21,6 +21,11 @@
 Has role : USER
 </div>
 </sec:authorize>
+<sec:authorize access="hasRole('SUPERUSER')">
+<div>
+Has role : SUPERUSER
+</div>
+</sec:authorize>
 <sec:authorize access="hasRole('ADMIN')">
 <div>
 Has role : ADMIN
