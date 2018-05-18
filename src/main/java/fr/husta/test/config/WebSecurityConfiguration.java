@@ -2,6 +2,7 @@ package fr.husta.test.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -14,6 +15,7 @@ import static fr.husta.test.security.WebSecurityConstants.Roles.*;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true, proxyTargetClass = true)
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Bean
@@ -51,7 +53,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 // Doc : https://docs.spring.io/spring-security/site/docs/current/reference/html5/index.html#jc-authorize-requests
                 .antMatchers("/admin/superadmin/**").hasRole(SUPERADMIN)
                 .antMatchers("/admin/**").hasRole(ADMIN)
-                .antMatchers("/secured/**").hasRole(USER)
+                .antMatchers("/secured/**").hasAnyRole(USER, SUPERUSER)
+                // '/mixed/**' : To be refined in actions with annotations
+                .antMatchers("/mixed/**").hasAnyRole(USER, SUPERUSER)
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().and()

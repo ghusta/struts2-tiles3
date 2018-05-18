@@ -34,6 +34,7 @@ public class SecurityScanAction extends ActionSupport {
     private Set<String> actionNames;
     private Set<String> actionNamesNsTiles;
     private Set<String> actionNamesNsFoo;
+    private Set<String> actionNamesNsMixed;
 
     private Set<String> namespaces;
     private String extension;
@@ -60,6 +61,10 @@ public class SecurityScanAction extends ActionSupport {
         return actionNamesNsFoo;
     }
 
+    public Set<String> getActionNamesNsMixed() {
+        return actionNamesNsMixed;
+    }
+
     public Set<String> getNamespaces() {
         return namespaces;
     }
@@ -80,6 +85,7 @@ public class SecurityScanAction extends ActionSupport {
         actionNames = new TreeSet<>(configHelper.getActionNames(""));
         actionNamesNsTiles = new TreeSet<>(configHelper.getActionNames("/tiles"));
         actionNamesNsFoo = new TreeSet<>(configHelper.getActionNames("/foo"));
+        actionNamesNsMixed = new TreeSet<>(configHelper.getActionNames("/mixed"));
 
         // org.apache.struts2.config_browser.ConfigurationHelper.getActionConfig
         ActionConfig actionConfigTest = configHelper.getActionConfig("/tiles", "test-tiles");

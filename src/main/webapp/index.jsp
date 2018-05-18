@@ -37,8 +37,11 @@
     <br/>
 
     <h2>Tests Spring Security</h2>
+    <label>Roles :</label>&nbsp;<em><sec:authentication property="principal.authorities" /></em>
     <ul class="list-group">
         <li class="list-group-item"><a href="<s:url namespace="/secured" action="secured"/>">Test #1</a></li>
+        <li class="list-group-item"><a href="<s:url namespace="/mixed" action="mixed-user"/>">Mixed : User</a></li>
+        <li class="list-group-item"><a href="<s:url namespace="/mixed" action="mixed-superuser"/>">Mixed : SuperUser</a></li>
     </ul>
     <br/>
 

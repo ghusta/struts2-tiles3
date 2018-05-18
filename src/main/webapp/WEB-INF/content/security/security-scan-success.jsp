@@ -79,6 +79,18 @@
                 </ul>
             </div>
         </div>
+
+        <div class="col">
+            <div class="card">
+                <label class="card-header">Liste Actions ("/mixed")</label>
+                <ul class="list-group list-group-flush">
+                    <s:iterator value="actionNamesNsMixed" var="action4">
+                        <li class="list-group-item">${action4}</li>
+                    </s:iterator>
+                </ul>
+            </div>
+        </div>
+
     </div>
 
 </div>

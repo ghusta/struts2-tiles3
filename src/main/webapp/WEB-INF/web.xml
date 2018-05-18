@@ -32,6 +32,11 @@
         <param-value>fr.husta.test.config</param-value>
     </context-param>
 
+    <error-page>
+        <location>/errors/403.jsp</location>
+        <exception-type>org.springframework.security.access.AccessDeniedException</exception-type>
+    </error-page>
+
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
