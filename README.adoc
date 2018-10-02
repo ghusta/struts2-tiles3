@@ -24,3 +24,5 @@ Testing integration of :
     mvn jetty:run
 
 Then go to : http://localhost:8280/
+
+_Generated with AsciiDoctor {asciidoctor-version}_
