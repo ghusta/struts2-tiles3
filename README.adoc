@@ -1,6 +1,6 @@
 = struts2-tiles3
 
-image:https://travis-ci.org/ghusta/struts2-tiles3.svg?branch=master["Build Status", link="https://travis-ci.org/ghusta/struts2-tiles3"]
+image:https://travis-ci.org/ghusta/struts2-tiles3.svg?branch=security-scan["Build Status", link="https://travis-ci.org/ghusta/struts2-tiles3"]
 
 Testing integration of :
 
@@ -8,6 +8,7 @@ Testing integration of :
     ** struts-convention-plugin
     ** struts-tiles-plugin
 * Tiles 3
+* Spring Security 5
 
 == Links
 
@@ -24,5 +25,29 @@ Testing integration of :
     mvn jetty:run
 
 Then go to : http://localhost:8280/
+
+=== Credentials
+
+The credentials for testing are :
+
+|===
+| Username | Password | Roles
+
+| user
+| password
+| USER
+
+| superuser
+| password
+| SUPERUSER
+
+| admin
+| admin*
+| ADMIN
+
+| god
+| jesus
+| USER, ADMIN, SUPERADMIN
+|===
 
 _Generated with AsciiDoctor {asciidoctor-version}_
