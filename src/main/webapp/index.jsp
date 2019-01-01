@@ -51,10 +51,10 @@
     <h2>Debug</h2>
     <ul class="list-group">
         <li class="list-group-item">
-            <a href="<c:url value="config-browser/" />"><i class="fa fa-cogs fa-lg" aria-hidden="true"></i> Debug : Config Browser</a>
+            <a href="<c:url value="config-browser/" />"><i class="fa fa-cogs fa-lg fa-fw" aria-hidden="true"></i> Debug : Config Browser</a>
         </li>
         <li class="list-group-item">
-            <a href="<s:url namespace="/security" action="security-scan"/>"><i class="fa fa-shield fa-lg" aria-hidden="true"></i> Security Scan (@Annot.)</a>
+            <a href="<s:url namespace="/security" action="security-scan"/>"><i class="fa fa-shield fa-lg fa-fw" aria-hidden="true"></i> Security Scan (@Annot.)</a>
         </li>
     </ul>
 

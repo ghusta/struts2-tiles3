@@ -20,11 +20,11 @@
 <body class="container">
 
 <div class="alert alert-danger" role="alert">
-    <h1 class="alert-heading"><i class="fa fa-warning" aria-hidden="true"></i> Access Denied !</h1>
+    <h1 class="alert-heading"><i class="fa fa-warning fa-fw" aria-hidden="true"></i> Access Denied !</h1>
     <div>
         Access to this page is not granted.
         <br/>
-        <i class="fa fa-link" aria-hidden="true"></i> <code>${pageContext.errorData.requestURI}</code>
+        <i class="fa fa-link fa-fw" aria-hidden="true"></i> <code>${pageContext.errorData.requestURI}</code>
     </div>
 <!-- Error from : ${pageContext.errorData} -->
 <!-- Throwable : ${pageContext.errorData.throwable} -->
