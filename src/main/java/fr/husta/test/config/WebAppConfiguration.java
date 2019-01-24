@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Import;
 
 @Configuration
 @EnableMBeanExport
-@Import({WebSecurityConfiguration.class})
+@Import({AppConfiguration.class, WebSecurityConfiguration.class})
 public class WebAppConfiguration {
 
 }
