@@ -1,6 +1,7 @@
 = struts2-tiles3
 
-image:https://travis-ci.org/ghusta/struts2-tiles3.svg?branch=security-scan["Build Status", link="https://travis-ci.org/ghusta/struts2-tiles3"]
+image:https://travis-ci.org/ghusta/struts2-tiles3.svg?branch=master["Build Status", link="https://travis-ci.org/ghusta/struts2-tiles3"]
+
 Testing integration of :
 
 * Struts 2.5
