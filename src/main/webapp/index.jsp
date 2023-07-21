@@ -25,11 +25,15 @@
     <h2>Tests basiques</h2>
     <div class="list-group">
         <a href="<s:url action="index"/>" class="list-group-item list-group-item-action">
-            Accueil
+            <div class="d-flex w-100">
+                <h5>Accueil</h5>
+            </div>
             <small>(Action Struts 2)</small>
         </a>
         <a href="<s:url action="notiles/index"/>" class="list-group-item list-group-item-action">
-            No Tiles !
+            <div class="d-flex w-100">
+                <h5>No Tiles !</h5>
+            </div>
             <small>(Action Struts 2)</small>
         </a>
         <a href="<c:url value="not-defined.jsp" />" class="list-group-item list-group-item-action list-group-item-danger">
